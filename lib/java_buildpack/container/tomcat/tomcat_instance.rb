@@ -15,7 +15,6 @@
 # limitations under the License.
 
 require 'fileutils'
-require 'zip'
 require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/container'
 require 'java_buildpack/container/tomcat/tomcat_utils'
