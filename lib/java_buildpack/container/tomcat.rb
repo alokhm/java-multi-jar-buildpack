@@ -65,7 +65,15 @@ module JavaBuildpack
       private
 
       def web_inf?
-        (@application.root + 'WEB-INF').exist?
+        (@application.root + 'WEB-INF').exist? ||
+          wars_or_zips?
+      end
+
+      def wars_or_zips?
+        entries = @application.root.entries.find_all do |p|
+          p.fnmatch('*.war') || p.fnmatch('*.zip')
+        end
+        not entries.empty?
       end
 
     end
