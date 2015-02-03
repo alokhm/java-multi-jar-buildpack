@@ -1,6 +1,7 @@
 .idea/tasks.xml
 .idea/workspace.xml
 .yardoc
+.vagrant
 build/
 coverage
 doc
