@@ -15,6 +15,7 @@
 # limitations under the License.
 
 require 'fileutils'
+require 'zip'
 require 'java_buildpack/component/versioned_dependency_component'
 require 'java_buildpack/container'
 require 'java_buildpack/container/tomcat/tomcat_utils'
@@ -108,10 +109,25 @@ module JavaBuildpack
       end
 
       def link_webapps(from, to)
+        webapps = []
+        webapps.push(from.find_all {|p| p.fnmatch('*.war')})
+
+        # Explode zips
         zips = from.find_all {|p| p.fnmatch('*.zip')}
-        wars = from.find_all {|p| p.fnmatch('*.war')}
-        if (not wars.empty?)
-          link_to(from, tomcat_webapps)
+        zips.each do |zip|
+          Zip::File.open(zip) do |zipfile|
+            zipfile.each do |file|
+              # Skip non-war files in zip
+              next if file.to_s !~ /\.war$/i
+              file.extract
+              webapps.push(Pathname.new(@application.root.to_s) + file.to_s)
+            end
+          end
+        end
+        webapps.flatten!
+
+        if (not webapps.empty?)
+          link_to(webapps, tomcat_webapps)
         else
           link_to(from, root)
           @droplet.additional_libraries << tomcat_datasource_jar if tomcat_datasource_jar.exist?

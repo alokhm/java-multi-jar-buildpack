@@ -14,7 +14,6 @@ mkdir -p "$CACHEDIR"
 
 deploy_artifact() {
 	_artifact=$( realpath "$1" )
-	echo "$_artifact"
 	cd "$BUILD_DIR"
 	if [[ -d "$_artifact" ]]; then
 		rsync -aq "${_artifact}/" .
@@ -54,5 +53,4 @@ _release() {
 }
 
 COMMNAME=$( basename $0 )
-echo "Running step: $COMMNAME"
 _${COMMNAME}
