@@ -116,7 +116,7 @@ module JavaBuildpack
         #       and avoid shelling out to "unzip".
         zips = from.find_all {|p| p.fnmatch('*.zip')}
         zips.each do |zip|
-          IO.popen(['unzip', '-o', zip.to_s, '*.war']) do |io|
+          IO.popen(['unzip', '-o', '-d', @application.root.to_s, zip.to_s, '*.war']) do |io|
             io.readlines.each do |line|
               line.gsub!(/\s*$/, '')
               next unless line.chomp =~ /\.war$/
