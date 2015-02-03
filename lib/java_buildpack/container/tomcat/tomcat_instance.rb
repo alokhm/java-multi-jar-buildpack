@@ -113,14 +113,16 @@ module JavaBuildpack
         webapps.push(from.find_all {|p| p.fnmatch('*.war')})
 
         # Explode zips
+        # TODO: Need to figure out a way to add 'rubyzip' gem to the image
+        #       and avoid shelling out to "unzip".
         zips = from.find_all {|p| p.fnmatch('*.zip')}
         zips.each do |zip|
-          Zip::File.open(zip) do |zipfile|
-            zipfile.each do |file|
-              # Skip non-war files in zip
-              next if file.to_s !~ /\.war$/i
-              file.extract
-              webapps.push(Pathname.new(@application.root.to_s) + file.to_s)
+          IO.popen(['unzip', '-o', zip.to_s, '*.war']) do |io|
+            io.readlines.each do |line|
+              line.gsub!(/\s*$/, '')
+              next unless line.chomp =~ /\.war$/
+              war = line.split()[-1]
+              webapps.push(Pathname.new(@application.root.to_s) + war)
             end
           end
         end
