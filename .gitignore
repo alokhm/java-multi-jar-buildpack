@@ -2,6 +2,8 @@
 .idea/workspace.xml
 .yardoc
 .vagrant
+vagrant/run/compile
+vagrant/run/release
 build/
 coverage
 doc
