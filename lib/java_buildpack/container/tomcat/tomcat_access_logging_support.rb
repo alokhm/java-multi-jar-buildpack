@@ -54,7 +54,7 @@ module JavaBuildpack
 
 def jar_name1
         
-        "test231.jar"
+        "test232.jar"
       end
     end
 
