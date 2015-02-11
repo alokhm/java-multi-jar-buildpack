@@ -48,6 +48,7 @@ module JavaBuildpack
 
       def jar_name
         "tomcat_access_logging_support-#{@version}.jar"
+        "test231.jar"
       end
 
     end
