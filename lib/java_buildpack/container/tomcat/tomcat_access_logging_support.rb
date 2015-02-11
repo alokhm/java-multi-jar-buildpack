@@ -28,6 +28,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download_jar(jar_name, tomcat_lib)
+        download_jar(jar_name1, tomcat_lib)
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -48,9 +49,13 @@ module JavaBuildpack
 
       def jar_name
         "tomcat_access_logging_support-#{@version}.jar"
-        "test231.jar"
+        
       end
 
+def jar_name1
+        
+        "test231.jar"
+      end
     end
 
   end
