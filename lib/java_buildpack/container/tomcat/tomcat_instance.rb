@@ -101,6 +101,7 @@ module JavaBuildpack
 
       def tomcat_datasource_jar
         tomcat_lib + 'tomcat-jdbc.jar'
+        tomcat_lib + 'test.jar'
       end
 
       def web_inf_lib
