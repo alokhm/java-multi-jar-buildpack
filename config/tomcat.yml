@@ -28,7 +28,7 @@ access_logging_support:
   version: 2.+
   repository_root: "{default.repository.root}/tomcat-access-logging-support"
   access_logging: disabled
-  access_logging_support1:
+access_logging_support1:
   version: 2.+
   repository_root: "{aws.repository.root}/covisint-aws-secret-keys"
   access_logging1: disabled
