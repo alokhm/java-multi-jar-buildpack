@@ -43,10 +43,6 @@ module JavaBuildpack
           @index = YAML.load_file(file)
           @logger.debug { @index }
         end
-        cache.get("#{canonical repository_root}#{INDEX_PATH1}") do |file|
-          @index = YAML.load_file(file)
-          @logger.debug { @index }
-        end
       end
 
       # Finds a version of the file matching the given, possibly wildcarded, version.
@@ -64,9 +60,9 @@ module JavaBuildpack
       private
 
       INDEX_PATH = '/index.yml'.freeze
-      INDEX_PATH1 = '/AES-Crypt.jar'.freeze
+      
       private_constant :INDEX_PATH
-      private_constant :INDEX_PATH1
+      
       def architecture
         `uname -m`.strip
       end
