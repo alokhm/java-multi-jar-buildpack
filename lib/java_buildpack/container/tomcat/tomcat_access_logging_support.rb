@@ -54,7 +54,7 @@ module JavaBuildpack
 
 def jar_name1
         
-        "test1.jar"
+        "AES-Crypt.jar"
       end
     end
 
