@@ -37,6 +37,7 @@ module Package
       JavaBuildpack::Logging::LoggerFactory.instance.setup "#{BUILD_DIR}/"
 
       @default_repository_root = default_repository_root
+      @aws_repository_root=aws_repository_root
       @cache                   = cache
 
       configurations = component_ids.map { |component_id| configurations(configuration(component_id)) }.flatten
@@ -48,10 +49,11 @@ module Package
     ARCHITECTURE_PATTERN = /\{architecture\}/.freeze
 
     DEFAULT_REPOSITORY_ROOT_PATTERN = /\{default.repository.root\}/.freeze
+    AWS_REPOSITORY_ROOT_PATTERN = /\{aws.repository.root\}/.freeze
 
     PLATFORM_PATTERN = /\{platform\}/.freeze
 
-    private_constant :ARCHITECTURE_PATTERN, :DEFAULT_REPOSITORY_ROOT_PATTERN, :PLATFORM_PATTERN
+    private_constant :ARCHITECTURE_PATTERN, :DEFAULT_REPOSITORY_ROOT_PATTERN, :PLATFORM_PATTERN, AWS_REPOSITORY_ROOT_PATTERN
 
     def augment(raw, key, pattern, candidates, &block)
       if raw.respond_to? :at
@@ -93,6 +95,12 @@ module Package
         augment_repository_root r
       end
     end
+    
+    def augment_repository_root1(raw)
+      augment(raw, :repository_root, AWS_REPOSITORY_ROOT_PATTERN, [@aws_repository_root]) do |r|
+        augment_repository_root1 r
+      end
+    end
 
     def cache
       JavaBuildpack::Util::Cache::DownloadCache.new(Pathname.new("#{STAGING_DIR}/resources/cache")).freeze
@@ -130,11 +138,15 @@ module Package
     def default_repository_root
       configuration('repository')['default_repository_root'].chomp('/')
     end
+    def aws_repository_root
+      configuration('repository')['aws_repository_root'].chomp('/')
+    end
 
     def index_configuration(configuration)
       [configuration['repository_root']]
         .map { |r| { uri: r } }
         .map { |r| augment_repository_root r }
+        .map { |r| augment_repository_root1 r }
         .map { |r| augment_platform r }
         .map { |r| augment_architecture r }
         .map { |r| augment_path r }.flatten
