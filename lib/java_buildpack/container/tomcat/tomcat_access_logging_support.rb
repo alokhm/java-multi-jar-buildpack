@@ -34,7 +34,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
         @droplet.java_opts.add_system_property 'access.logging.enabled', @configuration[KEY_ENABLED] == 'enabled'
-        @droplet.java_opts.add_system_property 'access.logging1.enabled', @configuration[KEY_ENABLED] == 'enabled'
+        #@droplet.java_opts.add_system_property 'access.logging1.enabled', @configuration[KEY_ENABLED] == 'enabled'
       end
 
       protected
@@ -46,7 +46,7 @@ module JavaBuildpack
 
       private
 
-      KEY_ENABLED = 'access_logging1'.freeze
+      KEY_ENABLED = 'access_logging'.freeze
 
       def jar_name
         "tomcat_access_logging_support-#{@version}.jar"
