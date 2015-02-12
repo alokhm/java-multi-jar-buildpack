@@ -30,7 +30,7 @@ access_logging_support:
   access_logging: disabled
   access_logging_support1:
   version: 2.+
-  repository_root: "{aws_repository_root}/covisint-aws-secret-keys"
+  repository_root: "{aws.repository.root}/covisint-aws-secret-keys"
   access_logging: disabled
 redis_store:
   version: 1.+
