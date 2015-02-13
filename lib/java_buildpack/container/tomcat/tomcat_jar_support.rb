@@ -47,7 +47,7 @@ module JavaBuildpack
       def jar_name
         "h1.jar"
       end
-       def jar_name
+       def jar_name1
         "h2.jar"
       end
 
