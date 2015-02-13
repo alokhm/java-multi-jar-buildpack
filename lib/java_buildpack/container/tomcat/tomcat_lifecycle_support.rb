@@ -48,8 +48,8 @@ module JavaBuildpack
         "tomcat_lifecycle_support-#{@version}.jar"
       end
       def jar_name1
-    # "AES-Crypt-#{@version}.jar"
-      "AES-Crypt.jar"
+     "AES-Crypt-#{@version}.jar"
+      #"AES-Crypt.jar"
       end
 
     end
