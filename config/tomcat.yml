@@ -23,7 +23,7 @@ lifecycle_support:
   repository_root: "{default.repository.root}/tomcat-lifecycle-support"
 lifecycle_support1:
   version: 2.+
-  repository_root: "{aws.repository.root}/tomcat-lifecycle-support"
+  repository_root: "{aws.repository.root}/covisint-aws-secret-keys"
 logging_support:
   version: 2.+
   repository_root: "{default.repository.root}/tomcat-logging-support"
