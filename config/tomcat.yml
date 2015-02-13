@@ -23,7 +23,10 @@ lifecycle_support:
   repository_root: "{default.repository.root}/tomcat-lifecycle-support"
 jar_support:
   version: 2.+
-  repository_root: "{aws.repository.root}/covisint-aws-secret-keys"
+  repository_root: "{aws.repository.root}/covisint.com-shared-libs"
+jar_support1:
+  version: 2.+
+  repository_root: "{aws.repository.root}/covisint.com-shared-libs"
 logging_support:
   version: 2.+
   repository_root: "{default.repository.root}/tomcat-logging-support"
