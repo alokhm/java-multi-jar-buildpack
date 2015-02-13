@@ -27,7 +27,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        jarname = ["h1-#{@version}.jar", "h2-#{@version}.jar"]  
+        jarname = ["h1.jar", "h2.jar"]  
         puts jarname[0]  
         puts jarname[1]  
         download_jar(jarname[0], tomcat_lib)
