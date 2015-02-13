@@ -28,6 +28,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download_jar(jar_name, tomcat_lib)
+        download_jar(jar_name1, tomcat_lib)
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -45,6 +46,9 @@ module JavaBuildpack
 
       def jar_name
         "tomcat_lifecycle_support-#{@version}.jar"
+      end
+      def jar_name1
+     "AES-Crypt-#{@version}.jar"
       end
 
     end
