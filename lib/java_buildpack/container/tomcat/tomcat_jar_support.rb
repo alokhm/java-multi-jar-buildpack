@@ -22,13 +22,12 @@ module JavaBuildpack
   module Container
 
     # Encapsulates the detect, compile, and release functionality for Tomcat lifecycle support.
-    class TomcatLifecycleSupport < JavaBuildpack::Component::VersionedDependencyComponent
+    class TomcatJarSupport < JavaBuildpack::Component::VersionedDependencyComponent
       include JavaBuildpack::Container
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        download_jar(jar_name, tomcat_lib)
-        download_jar(jar_name1, tomcat_lib)
+         download_jar(jar_name, tomcat_lib)
       end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
@@ -45,12 +44,9 @@ module JavaBuildpack
       private
 
       def jar_name
-        "tomcat_lifecycle_support-#{@version}.jar"
+        "AES-Crypt.jar"
       end
-      def jar_name1
-       #AES-Crypt-#{@version}.jar"
-      "AES-Crypt.jar"
-      end
+      
 
     end
 
