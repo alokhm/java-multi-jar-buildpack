@@ -45,10 +45,10 @@ module JavaBuildpack
       private
 
       def jar_name
-        "h1.jar"
+        "h1-#{@version}.jar"
       end
        def jar_name1
-        "h2.jar"
+        "h2-#{@version}.jar"
       end
 
     end
