@@ -66,6 +66,7 @@ module JavaBuildpack
       # @param [String] name an optional name for the download.  Defaults to +@component_name+.
       # @return [Void]
       def download_jar(jar_name = jar_name, target_directory = @droplet.sandbox, name = @component_name)
+        @uri=@uri + jar_name
         super(@version, @uri, jar_name, target_directory, name)
       end
 
