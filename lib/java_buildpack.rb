@@ -17,6 +17,4 @@
 # A module encapsulating all of the code for the Java buildpack
 module JavaBuildpack
 end
-```ruby
-code and stuff
-```
+
